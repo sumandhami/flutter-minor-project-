@@ -20,118 +20,148 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.black87, Colors.green.shade600],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "FUTSAL PLAYER CONNECT",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                      color: Colors.greenAccent.shade400,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black,
-                          blurRadius: 4,
-                          offset: Offset(2, 2),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // Gradient background
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.green.shade700.withOpacity(0.6),
+                    Colors.white.withOpacity(0.4),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ),
+            // Content
+            Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Text with border, same as login
+                    Stack(
+                      children: [
+                        // Border text
+                        Text(
+                          "FUTSAL PLAYER CONNECT",
+                          style: TextStyle(
+                            fontFamily: 'Kanit',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            foreground: Paint()
+                              ..style = PaintingStyle.stroke
+                              ..strokeWidth = 3
+                              ..color = Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        // Main text
+                        Text(
+                          "FUTSAL PLAYER CONNECT",
+                          style: TextStyle(
+                            fontFamily: 'Kanit',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "Create your account",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white70,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 50),
-                  // Name Input
-                  _buildTextField(_nameController, 'Name'),
-                  SizedBox(height: 20),
-                  // Email Input
-                  _buildTextField(_emailController, 'Email'),
-                  SizedBox(height: 20),
-                  // Phone Number Input
-                  _buildTextField(_phoneController, 'Phone Number'),
-                  SizedBox(height: 20),
-                  // Location Input
-                  _buildTextField(_locationController, 'Location'),
-                  SizedBox(height: 20),
-                  // Password Input
-                  _buildTextField(_passwordController, 'Password',
-                      obscureText: true),
-                  SizedBox(height: 20),
-                  // Confirm Password Input
-                  _buildTextField(
-                      _confirmPasswordController, 'Confirm Password',
-                      obscureText: true),
-                  SizedBox(height: 30),
-                  // Sign Up Button
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.black87,
-                      foregroundColor: Colors.greenAccent,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                      side: BorderSide(
-                          color: Colors.greenAccent.shade400, width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {
-                      // Add sign up functionality here
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => StartingPage()),
-                      );
-                    },
-                    child: Text(
-                      "SIGN UP",
+                    SizedBox(height: 20),
+                    Text(
+                      "Sign in to your account",
                       style: TextStyle(
+                        fontFamily: 'Kanit',
                         fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.teal.shade900,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    // Name Input
+                    _buildTextField(_nameController, 'Name'),
+                    SizedBox(height: 5),
+                    // Email Input
+                    _buildTextField(_emailController, 'Email'),
+                    SizedBox(height: 5),
+                    // Phone Number Input
+                    _buildTextField(_phoneController, 'Phone Number'),
+                    SizedBox(height: 5),
+                    // Location Input
+                    _buildTextField(_locationController, 'Location'),
+                    SizedBox(height: 5),
+                    // Password Input
+                    _buildTextField(_passwordController, 'Password',
+                        obscureText: true),
+                    SizedBox(height: 5),
+                    // Confirm Password Input
+                    _buildTextField(
+                        _confirmPasswordController, 'Confirm Password',
+                        obscureText: true),
+                    SizedBox(height: 30),
+                    // Sign Up Button
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.teal.shade600,
+                        foregroundColor: Colors.white,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 50, vertical: 16),
+                        side: BorderSide(color: Colors.white, width: 2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: () {
+                        // Add sign-up functionality here
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StartingPage()),
+                        );
+                      },
+                      child: Text(
+                        "SIGN UP",
+                        style: TextStyle(
+                          fontFamily: 'Kanit',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  // Already have an account? Login Link
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => Loginpage()),
-                      );
-                    },
-                    child: Text(
-                      "Already have an account? Login",
-                      style: TextStyle(color: Colors.greenAccent.shade400),
+                    SizedBox(height: 20),
+                    // Already have an account? Login Link
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Loginpage()),
+                        );
+                      },
+                      child: Text(
+                        "Already have an account? Login",
+                        style: TextStyle(
+                          color: Colors.teal.shade600,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -143,17 +173,23 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextField(
       controller: controller,
       obscureText: obscureText,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(
+          color: Colors.grey.shade700, fontFamily: 'Kanit', fontSize: 18),
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: TextStyle(color: Colors.white70),
-        filled: true,
-        fillColor: Colors.black45,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide.none,
+        labelStyle: TextStyle(
+          color: Colors.blueGrey.shade900,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Kanit',
+          fontSize: 22,
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.blueGrey.shade900),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal.shade900),
+        ),
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 14),
       ),
     );
   }
